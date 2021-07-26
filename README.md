@@ -6,7 +6,7 @@ This is simple product catalogue project where a user can add , edit , update an
 
 ## Project Specifications
 
-+ Create a simple UI(user interface).
++ Created a simple UI(user interface).
 + Initial state have one button , a input filed and search option.
 + A user can enter a product name and price in the input filed.
 + Then these value will show on ui and save data to localStorage.
@@ -15,7 +15,7 @@ This is simple product catalogue project where a user can add , edit , update an
 
 ## Project Picture
 
-![Digit Guessing Game!](/src/images/product_catalogue.PNG "Digit Guessing Game")
+![Product Catalogue!](/src/images/product_catalogue.PNG "Product Catalogue")
 
 
 This project has been created using **[webpack-cli](https://github.com/webpack/webpack-cli)**, you can now see the project in live server using this:
