@@ -28,17 +28,17 @@ class UI{
             addBtnElm,
             productListUlElm,
             filterInputElm
-        } = ui.selectors()
-        window.addEventListener('DOMContentLoaded',()=>ui.getData(data.productData))
-        addBtnElm.addEventListener('click',(e)=>ui.addItem(e))
-        productListUlElm.addEventListener('click',(e)=>ui.modifyOrDeleteProduct(e))
-        filterInputElm.addEventListener('keyup',(e)=>ui.searchProduct(e))
+        } = this.selectors()
+        window.addEventListener('DOMContentLoaded',()=>this.getData(data.productData))
+        addBtnElm.addEventListener('click',(e)=>this.addItem(e))
+        productListUlElm.addEventListener('click',(e)=>this.modifyOrDeleteProduct(e))
+        filterInputElm.addEventListener('keyup',(e)=>this.searchProduct(e))
     }
     // show error message
     showMessage(message){
         const {
             msgElm
-        } = ui.selectors()
+        } = this.selectors()
         msgElm.textContent=message
     }
     showAlert(alertMsg){
@@ -48,9 +48,9 @@ class UI{
     getData(productList){
         const {
             productListUlElm,
-        } = ui.selectors()
+        } = this.selectors()
         if(productList.length > 0){
-            ui.showMessage('')
+            this.showMessage('')
             let li = ''
             productList.forEach(({id,name,price}) => {
             li = document.createElement('li')
@@ -65,7 +65,7 @@ class UI{
             productListUlElm.appendChild(li)
             })
         }else{
-            ui.showMessage('Please add item to your catalogue')
+            this.showMessage('Please add item to your catalogue')
         }
     }
     addItem(e){
@@ -73,14 +73,14 @@ class UI{
             productNameInputElm,
             productPriceInputElm,
             productListUlElm
-        } = ui.selectors()
+        } = this.selectors()
         e.preventDefault()
         const name  = productNameInputElm.value
         const price = productPriceInputElm.value
         let id = data.generateId()
         const isInputOk = data.inValidInput(name, price)
         if(isInputOk){
-            ui.showAlert('please fill up necessary and valid information')
+            this.showAlert('please fill up necessary and valid information')
         }else{
             data.productDataPushInArray(id,name,price)
             productListUlElm.innerHTML=''
@@ -91,7 +91,7 @@ class UI{
             // }
             // productData.push(data)
             // productListUl.innerHTML=''
-            ui.getData(data.productData)
+            this.getData(data.productData)
             storage.saveDataToLocalStorage({id,name,price})
             productNameInputElm.value=''
             productPriceInputElm.value=''
@@ -102,7 +102,7 @@ class UI{
             productNameInputElm,
             productPriceInputElm,
             addBtnElm
-        } = ui.selectors()
+        } = this.selectors()
         productNameInputElm.value = foundProduct.name
         productPriceInputElm.value = foundProduct.price
         addBtnElm.style.display = 'none'
@@ -116,17 +116,17 @@ class UI{
             productPriceInputElm,
             addBtnElm,
             productListUlElm
-        } = ui.selectors()
+        } = this.selectors()
         document.querySelector('.update-product').addEventListener('click',(e)=>{
             e.preventDefault()
             const isInputOk = data.inValidInput(productNameInputElm.value, productPriceInputElm.value)
             if (isInputOk) {
-                ui.showAlert('input is not valid')
+                this.showAlert('input is not valid')
             }else{
                 data.updateProductData(productNameInputElm,productPriceInputElm,id)
             }
             productListUlElm.innerHTML=''
-            ui.getData(data.productData)
+            this.getData(data.productData)
             productNameInputElm.value = ''
             productPriceInputElm.value = ''
             addBtnElm.style.display = 'block'
@@ -146,10 +146,10 @@ class UI{
         }else if(e.target.classList.contains('edit-product')){
             const foundProduct = data.findProduct(id)
             //i have to select the item to edit
-            ui.populateEditItem(foundProduct)
+            this.populateEditItem(foundProduct)
             e.target.style.display='none'
             //update Product
-            ui.updateProductItem(foundProduct.id)
+            this.updateProductItem(foundProduct.id)
         }
     }
     searchProduct(e){
