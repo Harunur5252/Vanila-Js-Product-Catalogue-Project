@@ -137,8 +137,9 @@ class UI{
     }
     modifyOrDeleteProduct(e){
         const target =  e.target.parentElement
+        console.log(target)
         let id = Number(target.id.split('-')[1])
-            if(e.target.classList.contains('delete-product')){
+        if(e.target.classList.contains('delete-product')){
             e.target.parentElement.parentElement.removeChild(target)
             data.deleteProductData(id)
             storage.deleteItemFromLocalStorage(id)

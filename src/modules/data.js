@@ -25,8 +25,6 @@ class Data{
             price
         }
         this.productData.push(data)
-        // UI.getData(this.productData)
-        // storage.saveDataToLocalStorage(data)
     }
     deleteProductData(id){
         const result = this.productData.filter((productItem)=>{
